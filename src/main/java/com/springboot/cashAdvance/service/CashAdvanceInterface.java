@@ -1,6 +1,8 @@
 package com.springboot.cashAdvance.service;
 
 import com.springboot.cashAdvance.document.CashAdvance;
+import com.springboot.cashAdvance.dto.CashAdvanceEnterDto;
+import com.springboot.cashAdvance.dto.CashAdvancePerDto;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,8 +19,11 @@ public interface CashAdvanceInterface {
 	  
 	  public Mono<Void> delete(CashAdvance cashAdvance);
 	  
-//	  public Mono<CashAdvance> saveDto(CashAdvance cashAdvance);
+	  public Mono<CashAdvancePerDto> saveDtoPer(CashAdvancePerDto cashAdvancePerDto);
+	  
+	  public Mono<CashAdvanceEnterDto> saveDtoEnter(CashAdvanceEnterDto cashAdvanceEnterDto);
+  
 
-
+	
 	
 }

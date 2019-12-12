@@ -1,22 +1,17 @@
-package com.springboot.cashAdvance.document;
+package com.springboot.cashAdvance.dto;
 
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
 @Data
-@Document(collection="cashAdvance")
-public class CashAdvance {
+public class CashAdvancePerDto {
 	
 	@Id
 	private String id;
-	
-	@NotBlank
-	private String name; 
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String date;
@@ -29,6 +24,8 @@ public class CashAdvance {
 	
 	@NotBlank
 	private int cantShare;
+	
+	private PersonalDto holder;
 	
 
 }

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.cashAdvance.document.CashAdvance;
+import com.springboot.cashAdvance.dto.CashAdvanceEnterDto;
+import com.springboot.cashAdvance.dto.CashAdvancePerDto;
 import com.springboot.cashAdvance.service.CashAdvanceInterface;
 
 import reactor.core.publisher.Flux;
@@ -78,5 +80,24 @@ public class CashAdvanceController {
 	    }).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
 
 	  }
+	  
+		@PostMapping("/savePer")
+		public Mono<ResponseEntity<CashAdvancePerDto>> saveDto(@RequestBody CashAdvancePerDto cashAdvancePerDto) {
+
+			LOGGER.info(cashAdvancePerDto.toString());
+
+			return service.saveDtoPer(cashAdvancePerDto).map(s -> ResponseEntity.created(URI.create("/api/cashAdvance"))
+					.contentType(MediaType.APPLICATION_JSON).body(s));
+
+		}
+		@PostMapping("/saveEnter")
+		public Mono<ResponseEntity<CashAdvanceEnterDto>> saveDto(@RequestBody CashAdvanceEnterDto cashAdvanceEnterDto) {
+
+			LOGGER.info(cashAdvanceEnterDto.toString());
+
+			return service.saveDtoEnter(cashAdvanceEnterDto).map(s -> ResponseEntity.created(URI.create("/api/cashAdvance"))
+					.contentType(MediaType.APPLICATION_JSON).body(s));
+
+		}
 
 }
